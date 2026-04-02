@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MASDO OFFICIAL [XI-9] - Website Portofolio Premium + Sistem Absensi Digital">
+  <title>MASDO OFFICIAL [XI-9]</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Theme Toggle Button -->
+  <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+    <span class="theme-icon">🌙</span>
+  </button>
+
+  <!-- Hamburger Menu Button -->
+  <button id="hamburger" class="hamburger" aria-label="Menu">
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+  </button>
+
+  <!-- Sidebar Menu -->
+  <nav id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+      <h2>Menu</h2>
+      <button id="closeSidebar" class="close-sidebar" aria-label="Close menu">✕</button>
+    </div>
+    <ul class="sidebar-menu">
+      <li><a href="#home" data-page="home" class="menu-item active">🏠 Home</a></li>
+      <li><a href="#login" data-page="login" class="menu-item login-menu">🔐 Login</a></li>
+      <li><a href="#portofolio" data-page="portofolio" class="menu-item">💼 Portofolio</a></li>
+      <li><a href="#skills" data-page="skills" class="menu-item">💪 Skills</a></li>
+      <li><a href="#social" data-page="social" class="menu-item">🌐 Social Media</a></li>
+      <li><a href="#about" data-page="about" class="menu-item">👤 About</a></li>
+      <li><a href="#faq" data-page="faq" class="menu-item">❓ FAQ</a></li>
+      <li><a href="#" id="logoutMenuBtn" class="menu-item logout-menu" style="display:none">🚪 Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- Sidebar Backdrop -->
+  <div id="sidebarBackdrop" class="sidebar-backdrop"></div>
+
+  <!-- Main Container -->
+  <div id="app" class="app-container">
+    
+    <!-- HOME PAGE -->
+    <div id="homePage" class="page active">
+      <div class="hero-section">
+        <div class="hero-content glass-card">
+          <img id="heroAvatar" src="" alt="Avatar" class="hero-avatar">
+          <h1 id="heroName" class="hero-name">Loading...</h1>
+          <p id="heroTagline" class="hero-tagline"></p>
+          <p id="heroDescription" class="hero-description"></p>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-number" id="statProjects">0</span>
+              <span class="stat-label">Projects</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number" id="statSkills">0</span>
+              <span class="stat-label">Skills</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number" id="statSocial">0</span>
+              <span class="stat-label">Social</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOGIN PAGE -->
+    <div id="loginPage" class="page">
+      <div class="login-container glass-card">
+        <h2 class="page-title">🔐 Login</h2>
+        <div class="login-tabs">
+          <button class="tab-btn active" data-tab="siswa">Siswa</button>
+          <button class="tab-btn" data-tab="admin">Admin</button>
+        </div>
+        
+        <!-- Siswa Login Form -->
+        <form id="siswaLoginForm" class="login-form active">
+          <div class="form-group">
+            <label for="siswaKode">Kode Siswa</label>
+            <input type="text" id="siswaKode" placeholder="Contoh: XI9001" required>
+          </div>
+          <div class="form-group">
+            <label for="siswaPassword">Password</label>
+            <input type="password" id="siswaPassword" placeholder="Masukkan password" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Login Siswa</button>
+          <p class="form-hint">Gunakan kode siswa dan password yang sudah diberikan</p>
+        </form>
+
+        <!-- Admin Login Form -->
+        <form id="adminLoginForm" class="login-form">
+          <div class="form-group">
+            <label for="adminUsername">Username Admin</label>
+            <input type="text" id="adminUsername" placeholder="Username" required>
+          </div>
+          <div class="form-group">
+            <label for="adminPassword">Password Admin</label>
+            <input type="password" id="adminPassword" placeholder="Password" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Login Admin</button>
+          <p class="form-hint">Hanya admin yang memiliki akses penuh</p>
+        </form>
+      </div>
+    </div>
+
+    <!-- DASHBOARD PAGE (After Login) -->
+    <div id="dashboardPage" class="page">
+      <div class="dashboard-container">
+        <h2 class="page-title">📊 Dashboard</h2>
+        <div id="dashboardContent"></div>
+      </div>
+    </div>
+
+    <!-- PORTOFOLIO PAGE -->
+    <div id="portofolioPage" class="page">
+      <div class="portofolio-container">
+        <h2 class="page-title">💼 Portofolio</h2>
+        <div class="carousel-container">
+          <button class="carousel-btn prev" id="carouselPrev">❮</button>
+          <div class="carousel-wrapper">
+            <div class="carousel-track" id="carouselTrack"></div>
+          </div>
+          <button class="carousel-btn next" id="carouselNext">❯</button>
+        </div>
+        <div class="carousel-dots" id="carouselDots"></div>
+      </div>
+    </div>
+
+    <!-- SKILLS PAGE -->
+    <div id="skillsPage" class="page">
+      <div class="skills-container">
+        <h2 class="page-title">💪 Skills</h2>
+        <div class="skills-grid" id="skillsGrid"></div>
+      </div>
+    </div>
+
+    <!-- SOCIAL MEDIA PAGE -->
+    <div id="socialPage" class="page">
+      <div class="social-container">
+        <h2 class="page-title">🌐 Social Media</h2>
+        <div class="social-grid" id="socialGrid"></div>
+      </div>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div id="aboutPage" class="page">
+      <div class="about-container glass-card">
+        <h2 class="page-title">👤 About Me</h2>
+        <div id="aboutContent"></div>
+      </div>
+    </div>
+
+    <!-- FAQ PAGE -->
+    <div id="faqPage" class="page">
+      <div class="faq-container">
+        <h2 class="page-title">❓ FAQ (Frequently Asked Questions)</h2>
+        <div class="faq-list" id="faqList"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Logout Modal -->
+  <div id="logoutModal" class="modal">
+    <div class="modal-content glass-card">
+      <h3 class="modal-title">🚪 Logout & Kirim Kritik/Saran</h3>
+      <p class="modal-text">Sebelum logout, berikan kritik dan saran untuk pengembangan sistem ini:</p>
+      <textarea 
+        id="kritikSaran" 
+        class="modal-textarea" 
+        placeholder="Tulis kritik dan saran Anda di sini (opsional, min 10 karakter, max 500)"
+        maxlength="500"
+      ></textarea>
+      <div class="char-counter">
+        <span id="charCount">0</span>/500 karakter
+      </div>
+      <div class="modal-buttons">
+        <button class="btn btn-secondary" id="cancelLogout">✖ Batal</button>
+        <button class="btn btn-danger" id="confirmLogout">📤 Kirim & Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay" class="loading-overlay">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

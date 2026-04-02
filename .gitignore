@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Vercel
+.vercel
+.vercel/
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Build output
+dist/
+build/
+
+# Sensitive config (IMPORTANT!)
+# Uncomment if you move credentials to separate file
+# credentials.json
+# service-account.json
+
+# Note: config.json contains service account credentials
+# DO NOT commit config.json with real credentials to public repo!
+# Either:
+# 1. Use environment variables in Vercel dashboard, OR
+# 2. Add config.json to .gitignore and provide config.example.json

@@ -1,0 +1,31 @@
+{
+  "name": "masdo-official-xi9-vercel",
+  "version": "3.0.0",
+  "description": "MASDO OFFICIAL [XI-9] - Vercel All-in-One: Website Portofolio Premium + Sistem Absensi Digital",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'No build step needed'",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "absensi",
+    "portofolio",
+    "google-sheets",
+    "vercel",
+    "serverless",
+    "web-app"
+  ],
+  "author": "Masdo - XI-9",
+  "license": "MIT",
+  "dependencies": {
+    "jsonwebtoken": "^9.0.2",
+    "bcrypt": "^5.1.1",
+    "googleapis": "^128.0.0"
+  },
+  "devDependencies": {
+    "vercel": "^33.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
