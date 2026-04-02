@@ -5,7 +5,8 @@
 
 const fs = require('fs');
 const path = require('path');
-const { verifyPassword, generateToken } = require('../lib/auth');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 module.exports = async (req, res) => {
   // Only allow POST
@@ -28,24 +29,32 @@ module.exports = async (req, res) => {
     }
 
     // Load config
-    const config = JSON.parse(
-      fs.readFileSync(path.join(process.cwd(), 'config.json'), 'utf8')
-    );
+    const configPath = path.join(process.cwd(), 'config.json');
+    const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
 
     const adminUsername = config.security.adminCredentials.username;
     const adminPasswordHash = config.security.adminCredentials.passwordHash;
+    const jwtSecret = config.security.jwtSecret;
+    const jwtExpiry = config.security.jwtExpiry;
+
+    console.log('[Admin Login] Username attempt:', username);
+    console.log('[Admin Login] Expected username:', adminUsername);
 
     // Check username
     if (username !== adminUsername) {
+      console.log('[Admin Login] Username mismatch');
       return res.status(401).json({
         success: false,
         message: 'Username atau password salah'
       });
     }
 
-    // Verify password
-    const isPasswordValid = await verifyPassword(password, adminPasswordHash);
+    // Verify password with bcrypt directly
+    console.log('[Admin Login] Verifying password...');
+    const isPasswordValid = await bcrypt.compare(password, adminPasswordHash);
     
+    console.log('[Admin Login] Password valid:', isPasswordValid);
+
     if (!isPasswordValid) {
       return res.status(401).json({
         success: false,
@@ -54,10 +63,16 @@ module.exports = async (req, res) => {
     }
 
     // Generate token
-    const token = generateToken({
-      username: adminUsername,
-      role: 'admin'
-    });
+    const token = jwt.sign(
+      {
+        username: adminUsername,
+        role: 'admin'
+      },
+      jwtSecret,
+      { expiresIn: jwtExpiry }
+    );
+
+    console.log('[Admin Login] Login successful');
 
     // Return success
     res.status(200).json({
@@ -73,10 +88,10 @@ module.exports = async (req, res) => {
     });
 
   } catch (error) {
-    console.error('Error login admin:', error);
+    console.error('[Admin Login] Error:', error);
     res.status(500).json({
       success: false,
-      message: 'Gagal melakukan login admin'
+      message: 'Gagal melakukan login admin: ' + error.message
     });
   }
 };

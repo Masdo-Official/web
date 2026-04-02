@@ -168,12 +168,53 @@ function renderHomePage() {
 
   document.getElementById('heroAvatar').src = profil.foto;
   document.getElementById('heroName').textContent = profil.nama;
-  document.getElementById('heroTagline').textContent = profil.tagline;
+  
+  // Typing effect untuk tagline
+  typeWriterEffect('heroTagline', profil.tagline, 50);
+  
   document.getElementById('heroDescription').textContent = profil.deskripsi;
 
-  document.getElementById('statProjects').textContent = projects?.length || 0;
-  document.getElementById('statSkills').textContent = profil.skills?.length || 0;
-  document.getElementById('statSocial').textContent = sosmed?.length || 0;
+  // Animated counter untuk stats
+  animateCounter('statProjects', projects?.length || 0);
+  animateCounter('statSkills', profil.skills?.length || 0);
+  animateCounter('statSocial', sosmed?.length || 0);
+}
+
+// Typing effect function
+function typeWriterEffect(elementId, text, speed = 100) {
+  const element = document.getElementById(elementId);
+  element.textContent = '';
+  let i = 0;
+  
+  function type() {
+    if (i < text.length) {
+      element.textContent += text.charAt(i);
+      i++;
+      setTimeout(type, speed);
+    }
+  }
+  
+  type();
+}
+
+// Animated counter function
+function animateCounter(elementId, target, duration = 1000) {
+  const element = document.getElementById(elementId);
+  const start = 0;
+  const increment = target / (duration / 16); // 60fps
+  let current = start;
+  
+  function updateCounter() {
+    current += increment;
+    if (current < target) {
+      element.textContent = Math.floor(current);
+      requestAnimationFrame(updateCounter);
+    } else {
+      element.textContent = target;
+    }
+  }
+  
+  updateCounter();
 }
 
 // ==================== PORTOFOLIO CAROUSEL ====================
@@ -197,10 +238,15 @@ function renderPortofolioPage() {
         <div class="project-tech">
           ${project.tech.map(t => `<span class="tech-badge">${t}</span>`).join('')}
         </div>
-        <div class="project-status status-${project.status.toLowerCase()}">
-          ${project.status}
+        <div class="project-meta">
+          <div class="project-status status-${project.status.toLowerCase()}">
+            ${project.status}
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="showProjectDetails(${index})">
+            📋 View Details
+          </button>
         </div>
-        ${project.link ? `<a href="${project.link}" class="project-link" target="_blank">View Project →</a>` : ''}
+        ${project.link ? `<a href="${project.link}" class="project-link-external" target="_blank">🔗 Live Demo →</a>` : ''}
       </div>
     </div>
   `).join('');
@@ -212,6 +258,80 @@ function renderPortofolioPage() {
 
   initCarousel();
 }
+
+// Show project details modal
+function showProjectDetails(projectIndex) {
+  const { projects } = APP_STATE.config;
+  const project = projects[projectIndex];
+  
+  if (!project) return;
+  
+  const modal = document.getElementById('projectModal');
+  const content = document.getElementById('projectModalContent');
+  
+  content.innerHTML = `
+    <div class="project-detail-header">
+      <img src="${project.image}" alt="${project.title}" class="project-detail-image">
+      <div class="project-detail-status status-${project.status.toLowerCase()}">
+        ${project.status}
+      </div>
+    </div>
+    <h2 class="project-detail-title">${project.title}</h2>
+    <p class="project-detail-description">${project.description}</p>
+    
+    <div class="project-detail-section">
+      <h3>🛠️ Technologies Used</h3>
+      <div class="project-tech-detail">
+        ${project.tech.map(t => `<span class="tech-badge-large">${t}</span>`).join('')}
+      </div>
+    </div>
+    
+    <div class="project-detail-section">
+      <h3>✨ Key Features</h3>
+      <ul class="project-features">
+        ${project.features ? project.features.map(f => `<li>${f}</li>`).join('') : `
+          <li>Modern, responsive design</li>
+          <li>User-friendly interface</li>
+          <li>Fast and efficient performance</li>
+          <li>Regular updates and maintenance</li>
+        `}
+      </ul>
+    </div>
+    
+    ${project.link ? `
+      <div class="project-detail-actions">
+        <a href="${project.link}" class="btn btn-primary" target="_blank">
+          🚀 Visit Live Demo
+        </a>
+      </div>
+    ` : ''}
+  `;
+  
+  modal.classList.add('active');
+}
+
+// Close project modal
+document.addEventListener('DOMContentLoaded', () => {
+  const closeBtn = document.getElementById('closeProjectModal');
+  const modal = document.getElementById('projectModal');
+  
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      modal.classList.remove('active');
+    });
+  }
+  
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+      }
+    });
+  }
+});
+
+// Make showProjectDetails global
+window.showProjectDetails = showProjectDetails;
 
 function initCarousel() {
   const { projects } = APP_STATE.config;

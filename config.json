@@ -8,11 +8,11 @@
   "profil": {
     "nama": "Masdo",
     "kelas": "XI-9",
-    "sekolah": "SMK MUHAMMADIYAH BELITANG",
+    "sekolah": "SMA NEGERI X",
     "tahunAjaran": "2024/2025",
     "tagline": "Developer • Student • Tech Enthusiast",
     "deskripsi": "Siswa kelas XI-9 yang passionate dalam teknologi dan pengembangan web. Menciptakan solusi digital untuk memudahkan proses pembelajaran dan administrasi kelas. Spesialisasi dalam full-stack development dengan fokus pada user experience dan sistem yang efisien.",
-    "foto": "https://ui-avatars.com/api/?name=Masdo&size=400&background=6366F1&color=fff&bold=true",
+    "foto": "https://files.catbox.moe/i6o8ej.jpeg",
     "skills": [
       { "name": "Web Development", "level": 90, "icon": "💻" },
       { "name": "JavaScript", "level": 85, "icon": "⚡" },
@@ -41,8 +41,8 @@
       "platform": "Instagram",
       "icon": "instagram",
       "gradient": "linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4)",
-      "url": "https://instagram.com/masdo_officials",
-      "username": "@masdo_officials",
+      "url": "https://instagram.com/masdo",
+      "username": "@masdo",
       "followers": "1.2K"
     },
     {
@@ -57,8 +57,8 @@
       "platform": "WhatsApp",
       "icon": "whatsapp",
       "gradient": "linear-gradient(45deg, #25D366, #128C7E)",
-      "url": "https://wa.me/6287881316151",
-      "username": "+62 878-8131-6151 ",
+      "url": "https://wa.me/628xxxxxxxxxx",
+      "username": "+62 8xx-xxxx-xxxx",
       "followers": "Online"
     },
     {
@@ -93,21 +93,46 @@
       "description": "Platform absensi berbasis web dengan integrasi Google Sheets untuk tracking kehadiran siswa secara real-time",
       "tech": ["Node.js", "Express", "Google Sheets API", "Vanilla JS"],
       "status": "Active",
-      "image": "https://via.placeholder.com/400x250/6366F1/ffffff?text=Absensi+System"
+      "image": "https://via.placeholder.com/400x250/6366F1/ffffff?text=Absensi+System",
+      "features": [
+        "Real-time attendance tracking dengan sinkronisasi otomatis",
+        "Dashboard admin untuk kelola data siswa dan absensi",
+        "Export data ke CSV untuk analisis lebih lanjut",
+        "JWT authentication untuk keamanan maksimal",
+        "Responsive design untuk akses dari perangkat apapun",
+        "Google Sheets integration untuk storage yang reliable"
+      ]
     },
     {
       "title": "Portfolio Website",
       "description": "Website portofolio personal dengan design modern dan interaktif",
       "tech": ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
       "status": "Live",
-      "image": "https://via.placeholder.com/400x250/8B5CF6/ffffff?text=Portfolio"
+      "image": "https://via.placeholder.com/400x250/8B5CF6/ffffff?text=Portfolio",
+      "link": "#",
+      "features": [
+        "Modern glassmorphism design dengan dark/light theme",
+        "Smooth animations dan transitions 60fps",
+        "Fully responsive untuk semua ukuran layar",
+        "Interactive portfolio carousel dengan swipe support",
+        "SEO optimized untuk visibility maksimal",
+        "Fast loading dengan optimized assets"
+      ]
     },
     {
       "title": "Class Management Tool",
       "description": "Tool untuk manajemen tugas dan jadwal kelas",
       "tech": ["React", "Firebase", "Tailwind CSS"],
       "status": "Development",
-      "image": "https://via.placeholder.com/400x250/EC4899/ffffff?text=Class+Tool"
+      "image": "https://via.placeholder.com/400x250/EC4899/ffffff?text=Class+Tool",
+      "features": [
+        "Task management dengan deadline tracking",
+        "Kalender jadwal kelas terintegrasi",
+        "Notifikasi real-time untuk tugas baru",
+        "Kolaborasi antar siswa dalam grup",
+        "File sharing untuk materi pembelajaran",
+        "Progress tracking untuk setiap tugas"
+      ]
     }
   ],
 
@@ -132,12 +157,12 @@
   },
 
   "security": {
-    "jwtSecret": "a8f5f167f44f4964e6c998dee827110c95c9f5df3f4e5c5f5e5f5e5f5e5f5e5f5e5f5e5f5e5f5e5f5e5f5e5f5e5f5e5f5e5f5e5f5e5f",
+    "jwtSecret": "GANTI_DENGAN_STRING_RANDOM_MINIMAL_64_KARAKTER_UNTUK_KEAMANAN_MAKSIMAL",
     "jwtExpiry": "8h",
     "bcryptRounds": 10,
     "adminCredentials": {
       "username": "admin",
-      "passwordHash": "$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy"
+      "passwordHash": "$2b$10$abcdefghijklmnopqrstuvwxyz123456789"
     },
     "rateLimiting": {
       "windowMs": 900000,

@@ -28,12 +28,12 @@
     </div>
     <ul class="sidebar-menu">
       <li><a href="#home" data-page="home" class="menu-item active">🏠 Home</a></li>
-      <li><a href="#login" data-page="login" class="menu-item login-menu">🔐 Login</a></li>
       <li><a href="#portofolio" data-page="portofolio" class="menu-item">💼 Portofolio</a></li>
       <li><a href="#skills" data-page="skills" class="menu-item">💪 Skills</a></li>
       <li><a href="#social" data-page="social" class="menu-item">🌐 Social Media</a></li>
       <li><a href="#about" data-page="about" class="menu-item">👤 About</a></li>
       <li><a href="#faq" data-page="faq" class="menu-item">❓ FAQ</a></li>
+      <li><a href="#login" data-page="login" class="menu-item login-menu">🔐 Login</a></li>
       <li><a href="#" id="logoutMenuBtn" class="menu-item logout-menu" style="display:none">🚪 Logout</a></li>
     </ul>
   </nav>
@@ -48,9 +48,12 @@
     <div id="homePage" class="page active">
       <div class="hero-section">
         <div class="hero-content glass-card">
-          <img id="heroAvatar" src="" alt="Avatar" class="hero-avatar">
+          <div class="avatar-wrapper">
+            <img id="heroAvatar" src="" alt="Avatar" class="hero-avatar">
+            <div class="avatar-ring"></div>
+          </div>
           <h1 id="heroName" class="hero-name">Loading...</h1>
-          <p id="heroTagline" class="hero-tagline"></p>
+          <p id="heroTagline" class="hero-tagline typing-text"></p>
           <p id="heroDescription" class="hero-description"></p>
           <div class="hero-stats">
             <div class="stat-item">
@@ -65,6 +68,14 @@
               <span class="stat-number" id="statSocial">0</span>
               <span class="stat-label">Social</span>
             </div>
+          </div>
+          <div class="hero-cta">
+            <button class="btn btn-primary pulse-btn" onclick="document.querySelector('[data-page=portofolio]').click()">
+              🚀 Lihat Portofolio
+            </button>
+            <button class="btn btn-secondary" onclick="document.querySelector('[data-page=about]').click()">
+              👤 About Me
+            </button>
           </div>
         </div>
       </div>
@@ -164,6 +175,14 @@
       </div>
     </div>
 
+  </div>
+
+  <!-- Project Detail Modal -->
+  <div id="projectModal" class="modal">
+    <div class="modal-content glass-card project-modal-content">
+      <button class="close-modal" id="closeProjectModal">✕</button>
+      <div id="projectModalContent"></div>
+    </div>
   </div>
 
   <!-- Logout Modal -->
